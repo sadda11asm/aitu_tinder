@@ -100,3 +100,7 @@ fabric.properties
 zeus.json
 custom_plan.rb
 
+# remove .idea folder to avoid conflicts
+
+.idea
+
