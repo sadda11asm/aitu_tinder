@@ -1,6 +1,6 @@
-class CartChannel < ApplicationCable::Channel
+class OrderChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "cart_channel_#{uuid}"
+    stream_from "order_channel_#{uuid}"
   end
 
   def unsubscribed
