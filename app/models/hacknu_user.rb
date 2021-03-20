@@ -3,6 +3,7 @@ class HacknuUser < ApplicationRecord
   has_one :hacknu_preference, foreign_key: :user_id
   accepts_nested_attributes_for :hacknu_preference
   has_many :hacknu_likes, foreign_key: :crush_id
+  has_many :liked, foreign_key: :fan_id
 
   has_many :user_tags, foreign_key: :user_id
   has_many :tags, through: :user_tags
@@ -30,8 +31,15 @@ class HacknuUser < ApplicationRecord
     Chat.where(first_user_id: id).or(Chat.where(second_user_id: id))
   end
 
-  def hacknu_likes
-
+  def matches
+    HacknuLike.where(crush_id: id, matched: true).or(HacknuLike.where(fan_id: id, matched: true)).map do |like|
+      if like.fan.id == id
+        like.crush
+      else
+        like.fan
+      end
+    end
   end
+
 
 end

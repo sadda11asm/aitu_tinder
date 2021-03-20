@@ -23,9 +23,9 @@ class HacknuUsersController < ApplicationController
   end
 
   def get_matched_users
-    @liked_users = HacknuUser.joins(:hacknu_likes)
-                             .where("hacknu_likes.crush_id = ? and hacknu_likes.matched = true", @user.id)
-    render json: @liked_users
+    @matched_users = @user.matches
+
+    render json: @matched_users
   end
 
   # GET /hacknu_users/1
