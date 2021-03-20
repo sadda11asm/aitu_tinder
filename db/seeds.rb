@@ -66,17 +66,17 @@ TopicTag.create!(topic_id: 11, tag_id: 11)
 TopicTag.create!(topic_id: 11, tag_id: 12)
 HacknuUser.create!(aitu_id: 1, name: 'Саддам', lastname: 'Асматуллаев', age: 22,
                    lat: '43.229910', lng: '76.933229', gender: 'м', city: 'Алматы') # 1
-HacknuUser.create!(aitu_id: 1, name: 'Данекер', lastname: 'Нургалиева', age: 22,
+HacknuUser.create!(aitu_id: 2, name: 'Данекер', lastname: 'Нургалиева', age: 22,
                    lat: '43.229910', lng: '76.933239', gender: 'ж', city: 'Алматы') # 2
-HacknuUser.create!(aitu_id: 1, name: 'Нурс', lastname: 'Персик', age: 22,
+HacknuUser.create!(aitu_id: 3, name: 'Нурс', lastname: 'Персик', age: 22,
                    lat: '43.229920', lng: '76.933229', gender: 'м', city: 'Алматы') # 3
-HacknuUser.create!(aitu_id: 1, name: 'Даке', lastname: 'Качок', age: 22,
+HacknuUser.create!(aitu_id: 4, name: 'Даке', lastname: 'Качок', age: 22,
                    lat: '43.229910', lng: '76.933221', gender: 'м', city: 'Алматы') # 4
-HacknuUser.create!(aitu_id: 1, name: 'Аблан', lastname: 'КТЛ', age: 22,
+HacknuUser.create!(aitu_id: 5, name: 'Аблан', lastname: 'КТЛ', age: 22,
                    lat: '43.229915', lng: '76.933229', gender: 'м', city: 'Алматы') # 5
-HacknuUser.create!(aitu_id: 1, name: 'Адлет', lastname: 'Котлет', age: 22,
+HacknuUser.create!(aitu_id: 6, name: 'Адлет', lastname: 'Котлет', age: 22,
                    lat: '43.229911', lng: '76.933329', gender: 'м', city: 'Алматы') # 6
-HacknuUser.create!(aitu_id: 1, name: 'Алмас', lastname: 'Лётчик', age: 22,
+HacknuUser.create!(aitu_id: 7, name: 'Алмас', lastname: 'Лётчик', age: 22,
                    lat: '43.224910', lng: '76.933249', gender: 'м', city: 'Алматы') # 7
 TopicRoom.create!(user_id: 1, topic_id: 11)
 TopicRoom.create!(user_id: 1, topic_id: 10)

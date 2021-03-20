@@ -18,4 +18,8 @@ class HacknuUser < ApplicationRecord
     where.not(id: HacknuLike.where(fan_id: user.id, fan_like_type: "dislike").select(:fan_id))
   }
 
+  def chats
+    Chat.where(first_user_id: id).or(Chat.where(second_user_id: id))
+  end
+
 end

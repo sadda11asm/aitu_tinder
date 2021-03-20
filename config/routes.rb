@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-
   post 'sign_up', to: 'hacknu_users#sign_up'
   get 'get_liked_users', to: 'hacknu_users#get_liked_by_users'
-
+  resources :chats
+  resources :messages
   resources :hacknu_conversations
   resources :tags
   resources :topic_rooms

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_091824) do
+ActiveRecord::Schema.define(version: 2021_03_20_142804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "first_user_id"
+    t.bigint "second_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["first_user_id"], name: "index_chats_on_first_user_id"
+    t.index ["second_user_id"], name: "index_chats_on_second_user_id"
+  end
 
   create_table "hacknu_conversations", force: :cascade do |t|
     t.bigint "user1_id"
@@ -71,6 +80,16 @@ ActiveRecord::Schema.define(version: 2021_03_20_091824) do
     t.bigint "aitu_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id"
+    t.bigint "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "text"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -102,6 +121,8 @@ ActiveRecord::Schema.define(version: 2021_03_20_091824) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "chats", "hacknu_users", column: "first_user_id"
+  add_foreign_key "chats", "hacknu_users", column: "second_user_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user1_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user2_id"
   add_foreign_key "hacknu_conversations", "topic_rooms"
@@ -109,6 +130,8 @@ ActiveRecord::Schema.define(version: 2021_03_20_091824) do
   add_foreign_key "hacknu_likes", "hacknu_users", column: "crush_id"
   add_foreign_key "hacknu_likes", "hacknu_users", column: "fan_id"
   add_foreign_key "hacknu_preferences", "hacknu_users", column: "user_id"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "hacknu_users", column: "sender_id"
   add_foreign_key "topic_rooms", "hacknu_users", column: "user_id"
   add_foreign_key "topic_rooms", "topics"
   add_foreign_key "topic_tags", "tags"
