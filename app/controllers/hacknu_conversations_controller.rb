@@ -1,5 +1,5 @@
 class HacknuConversationsController < ApplicationController
-  before_action :set_hacknu_conversation, only: [:show, :update, :destroy]
+  before_action :set_hacknu_conversation, only: %i[show update destroy]
 
   # GET /hacknu_conversations
   def index
