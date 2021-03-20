@@ -4,11 +4,11 @@ class HacknuUsersController < ApplicationController
 
   # GET /hacknu_users
   def index
-    hacknu_users = HacknuUser.all.includes(:hacknu_preference)
+    hacknu_users = HacknuUser.all.joins(:hacknu_preference).includes(:hacknu_preference)
     square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
 
     if @user.hacknu_preference.present?
-      hacknu_users = hacknu_users.filter_by_preferences(@user, square[0],square[1],square[2],square[3])
+      hacknu_users = hacknu_users.filter_by_preferences(@user, square[0], square[1], square[2], square[3])
     end
     hacknu_users = hacknu_users.filter_by_likes(@user)
 
