@@ -21,14 +21,14 @@ class HacknuUsersController < ApplicationController
 
   def get_liked_by_users
     @liked_users = HacknuUser.joins(:hacknu_likes)
-                              .where("hacknu_likes.crush_id = ?", @user.id)
+                              .where("hacknu_likes.crush_id = ? AND hacknu_likes.matched != true", @user.id)
 
     render json: @liked_users
   end
 
   def get_matched_users
     @liked_users = HacknuUser.joins(:hacknu_likes)
-                             .where("hacknu_likes.crush_id = ? and matched = true", @user.id)
+                             .where("hacknu_likes.crush_id = ? and hacknu_likes.matched = true", @user.id)
 
     render json: @liked_users
   end
@@ -102,7 +102,7 @@ class HacknuUsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hacknu_user_params
-      params.require(:hacknu_user).permit(:like_type)
+      params.permit(:like_type)
     end
 
     def user_params
