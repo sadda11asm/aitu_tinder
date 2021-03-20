@@ -8,4 +8,6 @@ class ChatBlueprint < Blueprinter::Base
       chat.first_user
     end
   end
+
+  association :last_message, blueprint: MessageBlueprint
 end
