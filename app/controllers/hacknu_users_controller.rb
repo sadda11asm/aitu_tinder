@@ -52,21 +52,21 @@ class HacknuUsersController < ApplicationController
   # PATCH/PUT /hacknu_users/1
   def update
 
-    @hacknu_likes = HacknuLike.find_by(crush_id: @user.id, fan_id: @hacknu_user.id)
+    @like = HacknuLike.find_by(crush_id: @user.id, fan_id: @hacknu_user.id)
 
-    hacknu_user_like_type = hacknu_user_params[:like_type]
+    user_like_type = hacknu_user_params[:like_type]
 
-    if @hacknu_likes.present?
-      @hacknu_likes.update(crush_like_type: hacknu_user_like_type, crush_id: @user.id)
-      if @hacknu_likes.fan_like_type == @hacknu_likes.crush_like_type
-        @hacknu_likes.update(matched: true)
+    if @like.present?
+      @like.update(crush_like_type: user_like_type, crush_id: @user.id)
+      if @like.fan_like_type == @like.crush_like_type
+        @like.update(matched: true)
       end
     else
-      @hacknu_likes = HacknuLike.new(fan_id: @user.id, crush_id: @hacknu_user.id, fan_like_type: hacknu_user_like_type)
+      @like = HacknuLike.new(fan_id: @user.id, crush_id: @hacknu_user.id, fan_like_type: user_like_type)
     end
 
-    if @hacknu_likes.save
-      render json: @hacknu_likes, status: :created
+    if @like.save
+      render json: @like, status: :created
     else
       render json: @hacknu_user.errors, status: :unprocessable_entity
     end
@@ -83,7 +83,6 @@ class HacknuUsersController < ApplicationController
     my_id = request.headers['Authorization']
     @current_user = HacknuUser.create!(id: my_id, aitu_id: my_id)
     @current_user.update(user_params)
-
 
     if @current_user.save
       render json: @current_user, status: :created, location: @current_user
