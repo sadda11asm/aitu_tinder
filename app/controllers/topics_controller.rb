@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @topics = Topic.all.includes(:tags)
+    @topics = Topic.all.includes(:tags).order(created_at: :desc)
 
     render json: ::TopicBlueprint.render(@topics)
   end

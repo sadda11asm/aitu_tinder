@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
 
   def registered_user
     return unless auth_header
+
     id = auth_header
 
     @user = HacknuUser.find_by(aitu_id: id)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_091416) do
+ActiveRecord::Schema.define(version: 2021_03_20_091824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_091416) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "aitu_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -101,20 +102,6 @@ ActiveRecord::Schema.define(version: 2021_03_20_091416) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "hacknu_users", force: :cascade do |t|
-    t.string "name"
-    t.string "lastname"
-    t.integer "age"
-    t.float "lat"
-    t.float "lng"
-    t.string "gender"
-    t.string "city"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "aitu_id"
-  end
-
-  add_foreign_key "hacknu_conversations", "hacknu_topic_rooms", column: "topic_room_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user1_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user2_id"
   add_foreign_key "hacknu_conversations", "topic_rooms"
