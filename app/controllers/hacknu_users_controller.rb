@@ -74,8 +74,14 @@ class HacknuUsersController < ApplicationController
 
   def sign_up
     my_id = request.headers['Authorization']
-    @current_user = HacknuUser.create!(aitu_id: my_id)
+    @current_user = HacknuUser.create!(id: my_id, aitu_id: my_id)
     @current_user.update(user_params)
+
+    for tag in tag_params[:ids].split(",")
+      @user_tags = UserTag.new(user_id: my_id, tag_id: tag)
+      @user_tags.save!
+    end
+
     if @current_user.save
       render json: @current_user, status: :created, location: @current_user
     else
@@ -97,7 +103,11 @@ class HacknuUsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :lastname, :age, :gender, :city, :lng, :lat)
+      params.require(:user).permit(:name, :lastname, :age, :gender, :city, :lng, :lat, :avatar_url)
+    end
+
+    def tag_params
+      params.require(:tags).permit(:ids)
     end
 
 

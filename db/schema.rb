@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_142804) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "aitu_id"
+    t.string "avatar_url"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -121,6 +122,13 @@ ActiveRecord::Schema.define(version: 2021_03_20_142804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_tags", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tag_id"
+    t.index ["tag_id"], name: "index_user_tags_on_tag_id"
+    t.index ["user_id"], name: "index_user_tags_on_user_id"
+  end
+
   add_foreign_key "chats", "hacknu_users", column: "first_user_id"
   add_foreign_key "chats", "hacknu_users", column: "second_user_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user1_id"
@@ -136,4 +144,6 @@ ActiveRecord::Schema.define(version: 2021_03_20_142804) do
   add_foreign_key "topic_rooms", "topics"
   add_foreign_key "topic_tags", "tags"
   add_foreign_key "topic_tags", "topics"
+  add_foreign_key "user_tags", "hacknu_users", column: "user_id"
+  add_foreign_key "user_tags", "tags"
 end
