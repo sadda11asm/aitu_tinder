@@ -9,17 +9,20 @@ class HacknuUser < ApplicationRecord
 
   scope :filter_by_preferences, -> (user, minLng, maxLng, minLat, maxLat) {
 
-      # square = square(user.lng, user.lat, user.hacknu_preference.distance)
       where("(hacknu_users.age BETWEEN ? AND ?) AND
-              (hacknu_users.gender !=  ?)",
+              (hacknu_users.gender !=  ?) AND
+              (hacknu_users.lng BETWEEN ? AND ?) AND
+              (hacknu_users.lat BETWEEN ? AND ?)",
             user.hacknu_preference.min_age,
             user.hacknu_preference.max_age,
-            user.gender
+            user.gender,
+            minLng, maxLng,
+            minLat, maxLat
             )
   }
 
   scope :filter_by_likes, -> (user) {
-    where.not(id: HacknuLike.where(fan_id: user.id, fan_like_type: "dislike").select(:fan_id))
+    where.not(id: HacknuLike.where(fan_id: user.id).select(:fan_id))
   }
 
   def chats

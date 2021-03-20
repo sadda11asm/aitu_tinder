@@ -6,7 +6,7 @@ class HacknuUsersController < ApplicationController
   def index
 
     hacknu_users = HacknuUser.all.includes(:hacknu_preference)
-    square = square(params[:lng], params[:lat], @user.hacknu_preference.distance)
+    square = square(@user.lng, @user.lat, @user.hacknu_preference.distance)
 
     # if params[:by_preferences].present?
          hacknu_users = hacknu_users.filter_by_preferences(@user, square[0],square[1],square[2],square[3])
@@ -58,7 +58,7 @@ class HacknuUsersController < ApplicationController
 
     if @like.present?
       @like.update(crush_like_type: user_like_type, crush_id: @user.id)
-      if @like.fan_like_type == @like.crush_like_type
+      if @like.fan_like_type == @like.crush_like_type and @like.fan_like_type != 'dislike'
         @like.update(matched: true)
       end
     else
@@ -113,10 +113,10 @@ class HacknuUsersController < ApplicationController
   R = 6371.0
 
   def square(lng, lat, rad)
-    maxLat = lat.to_f + ((rad / R) * Math::PI / 180)
-    minLat = lat.to_f - ((rad / R) * Math::PI / 180)
-    maxLng = lng.to_f + (Math.asin(rad / R) / Math.cos(lat.to_f / 180 * Math::PI)) * Math::PI / 180
-    minLng = lng.to_f - (Math.asin(rad / R) / Math.cos(lat.to_f / 180 * Math::PI)) * Math::PI / 180
+    maxLat = lat + ((rad.to_f / R) * Math::PI / 180)
+    minLat = lat - ((rad.to_f / R) * Math::PI / 180)
+    maxLng = lng + (Math.asin(rad.to_f / R) / Math.cos(lat / 180 * Math::PI)) * Math::PI / 180
+    minLng = lng - (Math.asin(rad.to_f / R) / Math.cos(lat / 180 * Math::PI)) * Math::PI / 180
     [minLng, maxLng, minLat, maxLat]
   end
 
