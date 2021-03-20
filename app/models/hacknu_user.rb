@@ -1,6 +1,7 @@
 class HacknuUser < ApplicationRecord
 
   has_one :hacknu_preference, foreign_key: :user_id
+  accepts_nested_attributes_for :hacknu_preference
   has_many :hacknu_likes
 
   has_many :user_tags, foreign_key: :user_id
