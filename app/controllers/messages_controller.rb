@@ -56,7 +56,25 @@ class MessagesController < ApplicationController
         order_item: ::MessageBlueprint.render(message).to_json
       }
     )
+    send_push(user, message)
   end
+
+  def send_push(user, message)
+    request = Net::HTTP::Post.new('https://api.miniapps.aitu.io/kz.btsd.messenger.apps.public.MiniAppsPublicService/SendPush')
+    request.content_type = 'application/json;charset=UTF-8'
+    request.body = JSON.dump(
+      {
+        'locale' => 1,
+        'sign' => user.sign,
+        'message' => "#{message.sender.name}: #{message.text}",
+        'title' => 'Новое сообщение!',
+        'app_id' => '1eba1eb2-8937-11eb-a21f-6ac7ec087d2d',
+        'user_id' => user.aitu_id_string
+      }
+    )
+    request
+  end
+
   def set_message
     @message = Message.find(params[:id])
   end
