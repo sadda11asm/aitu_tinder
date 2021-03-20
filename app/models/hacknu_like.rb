@@ -1,3 +1,4 @@
 class HacknuLike < ApplicationRecord
-  belongs_to :hacknu_user
+  belongs_to :fan, class_name: 'HacknuUser'
+  belongs_to :crush, class_name: 'HacknuUser'
 end
