@@ -65,19 +65,26 @@ TopicTag.create!(topic_id: 11, tag_id: 10)
 TopicTag.create!(topic_id: 11, tag_id: 11)
 TopicTag.create!(topic_id: 11, tag_id: 12)
 HacknuUser.create!(aitu_id: 1, name: 'Саддам', lastname: 'Асматуллаев', age: 22,
-                   lat: '43.229910', lng: '76.933229', gender: 'м', city: 'Алматы') # 1
+                   lat: '43.229910', lng: '76.933229', gender: 'man', city: 'Алматы') # 1
 HacknuUser.create!(aitu_id: 2, name: 'Данекер', lastname: 'Нургалиева', age: 22,
-                   lat: '43.229910', lng: '76.933239', gender: 'ж', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
 HacknuUser.create!(aitu_id: 3, name: 'Нурс', lastname: 'Персик', age: 22,
-                   lat: '43.229920', lng: '76.933229', gender: 'м', city: 'Алматы') # 3
+                   lat: '43.229920', lng: '76.933229', gender: 'man', city: 'Алматы') # 3
 HacknuUser.create!(aitu_id: 4, name: 'Даке', lastname: 'Качок', age: 22,
-                   lat: '43.229910', lng: '76.933221', gender: 'м', city: 'Алматы') # 4
+                   lat: '43.229910', lng: '76.933221', gender: 'man', city: 'Алматы') # 4
 HacknuUser.create!(aitu_id: 5, name: 'Аблан', lastname: 'КТЛ', age: 22,
-                   lat: '43.229915', lng: '76.933229', gender: 'м', city: 'Алматы') # 5
+                   lat: '43.229915', lng: '76.933229', gender: 'man', city: 'Алматы') # 5
 HacknuUser.create!(aitu_id: 6, name: 'Адлет', lastname: 'Котлет', age: 22,
-                   lat: '43.229911', lng: '76.933329', gender: 'м', city: 'Алматы') # 6
+                   lat: '43.229911', lng: '76.933329', gender: 'man', city: 'Алматы') # 6
 HacknuUser.create!(aitu_id: 7, name: 'Алмас', lastname: 'Лётчик', age: 22,
-                   lat: '43.224910', lng: '76.933249', gender: 'м', city: 'Алматы') # 7
+                   lat: '43.224910', lng: '76.933249', gender: 'man', city: 'Алматы') # 7
+HacknuPreference.create!(user_id: 1, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 2, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 3, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 4, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 5, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 6, min_age: 10, max_age: 25, distance: 100) # 1
+HacknuPreference.create!(user_id: 7, min_age: 10, max_age: 25, distance: 100) # 1
 TopicRoom.create!(user_id: 1, topic_id: 11)
 TopicRoom.create!(user_id: 1, topic_id: 10)
 TopicRoom.create!(user_id: 1, topic_id: 3)
