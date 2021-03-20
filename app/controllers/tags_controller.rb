@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   def index
     @tags = Tag.all
 
-    render json: @tags
+    render json: ::TagBlueprint.render(@tags)
   end
 
   # GET /tags/1

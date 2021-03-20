@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+TopicTag.delete_all
+Tag.all.delete_all
+Topic.all.delete_all
+HacknuUser.delete_all
 Tag.create!(name: 'Футбол') # 1
 Tag.create!(name: 'Фильмы') # 2
 Tag.create!(name: 'Сериалы') # 3
@@ -59,7 +63,6 @@ TopicTag.create!(topic_id: 11, tag_id: 8)
 TopicTag.create!(topic_id: 11, tag_id: 10)
 TopicTag.create!(topic_id: 11, tag_id: 11)
 TopicTag.create!(topic_id: 11, tag_id: 12)
-
 
 
 
