@@ -4,14 +4,15 @@ class HacknuUsersController < ApplicationController
 
   # GET /hacknu_users
   def index
-    user = @user
 
     hacknu_users = HacknuUser.all.includes(:hacknu_preference)
-    square = square(params[:lng], params[:lat], user.hacknu_preference.distance)
+    square = square(params[:lng], params[:lat], @user.hacknu_preference.distance)
 
     # if params[:by_preferences].present?
-         hacknu_users = hacknu_users.filter_by_preferences(user, square[0],square[1],square[2],square[3])
+         hacknu_users = hacknu_users.filter_by_preferences(@user, square[0],square[1],square[2],square[3])
     # end
+    #
+    hacknu_users = hacknu_users.filter_by_likes(@user)
 
     @hacknu_users = hacknu_users
 
@@ -35,13 +36,28 @@ class HacknuUsersController < ApplicationController
   # end
 
   # PATCH/PUT /hacknu_users/1
-  # def update
-  #   if @hacknu_user.update(hacknu_user_params)
-  #     render json: @hacknu_user
-  #   else
-  #     render json: @hacknu_user.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+
+    @hacknu_likes = HacknuLike.find_by(crush_id: @user.id, fan_id: @hacknu_user.id)
+
+    hacknu_user_like_type = hacknu_user_params[:like_type]
+
+    if @hacknu_likes.present?
+      @hacknu_likes.update(crush_like_type: hacknu_user_like_type, crush_id: @user.id)
+      if @hacknu_likes.fan_like_type == @hacknu_likes.crush_like_type
+        @hacknu_likes.update(matched: true)
+      end
+    else
+      @hacknu_likes = HacknuLike.new(fan_id: @user.id, crush_id: @hacknu_user.id, fan_like_type: hacknu_user_like_type)
+    end
+
+    if @hacknu_likes.save
+      render json: @hacknu_likes, status: :created
+    else
+      render json: @hacknu_user.errors, status: :unprocessable_entity
+    end
+
+  end
 
   # DELETE /hacknu_users/1
   def destroy
@@ -56,7 +72,7 @@ class HacknuUsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hacknu_user_params
-      params.require(:hacknu_user).permit(:name, :lastname, :age, :lat, :lng, :gender, :city)
+      params.require(:hacknu_user).permit(:like_type)
     end
 
   R = 6371.0
