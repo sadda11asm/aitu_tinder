@@ -23,6 +23,7 @@ gem 'puma', '~> 3.11'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'blueprinter'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'redis'
 gem 'redis-namespace'

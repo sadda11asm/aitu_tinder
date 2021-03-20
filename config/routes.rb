@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :hacknu_conversations
-  resources :hacknu_tags
-  resources :hacknu_topic_rooms
-  resources :hacknu_topic_tags
-  resources :hacknu_topics
+  resources :tags
+  resources :topic_rooms
+  resources :topic_tags
+  resources :topics
   resources :hacknu_likes
   resources :hacknu_preferences
   resources :hacknu_images

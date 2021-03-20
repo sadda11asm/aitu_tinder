@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_085311) do
+ActiveRecord::Schema.define(version: 2021_03_20_091824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,37 +58,6 @@ ActiveRecord::Schema.define(version: 2021_03_20_085311) do
     t.index ["user_id"], name: "index_hacknu_preferences_on_user_id"
   end
 
-  create_table "hacknu_tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "hacknu_topic_rooms", force: :cascade do |t|
-    t.bigint "topic_id"
-    t.bigint "user_id"
-    t.boolean "free"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_hacknu_topic_rooms_on_topic_id"
-    t.index ["user_id"], name: "index_hacknu_topic_rooms_on_user_id"
-  end
-
-  create_table "hacknu_topic_tags", force: :cascade do |t|
-    t.bigint "topic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "tag_id"
-    t.index ["tag_id"], name: "index_hacknu_topic_tags_on_tag_id"
-    t.index ["topic_id"], name: "index_hacknu_topic_tags_on_topic_id"
-  end
-
-  create_table "hacknu_topics", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "hacknu_users", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
@@ -101,15 +70,46 @@ ActiveRecord::Schema.define(version: 2021_03_20_085311) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "hacknu_conversations", "hacknu_topic_rooms", column: "topic_room_id"
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topic_rooms", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.bigint "user_id"
+    t.boolean "free"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_topic_rooms_on_topic_id"
+    t.index ["user_id"], name: "index_topic_rooms_on_user_id"
+  end
+
+  create_table "topic_tags", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tag_id"
+    t.index ["tag_id"], name: "index_topic_tags_on_tag_id"
+    t.index ["topic_id"], name: "index_topic_tags_on_topic_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user1_id"
   add_foreign_key "hacknu_conversations", "hacknu_users", column: "user2_id"
+  add_foreign_key "hacknu_conversations", "topic_rooms"
   add_foreign_key "hacknu_images", "hacknu_users", column: "user_id"
   add_foreign_key "hacknu_likes", "hacknu_users", column: "crush_id"
   add_foreign_key "hacknu_likes", "hacknu_users", column: "fan_id"
   add_foreign_key "hacknu_preferences", "hacknu_users", column: "user_id"
-  add_foreign_key "hacknu_topic_rooms", "hacknu_topics", column: "topic_id"
-  add_foreign_key "hacknu_topic_rooms", "hacknu_users", column: "user_id"
-  add_foreign_key "hacknu_topic_tags", "hacknu_tags", column: "tag_id"
-  add_foreign_key "hacknu_topic_tags", "hacknu_topics", column: "topic_id"
+  add_foreign_key "topic_rooms", "hacknu_users", column: "user_id"
+  add_foreign_key "topic_rooms", "topics"
+  add_foreign_key "topic_tags", "tags"
+  add_foreign_key "topic_tags", "topics"
 end

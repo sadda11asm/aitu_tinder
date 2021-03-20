@@ -1,0 +1,2 @@
+class TopicRoom < ApplicationRecord
+end
