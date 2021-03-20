@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_143539) do
+ActiveRecord::Schema.define(version: 2021_03_20_194900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_143539) do
     t.datetime "updated_at", null: false
     t.bigint "aitu_id"
     t.string "avatar_url"
+    t.string "sign"
   end
 
   create_table "messages", force: :cascade do |t|

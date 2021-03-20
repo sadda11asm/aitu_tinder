@@ -106,7 +106,7 @@ class HacknuUsersController < ApplicationController
     end
 
     def user_params
-      params.permit(:name, :lastname, :age, :gender, :city, :lng, :lat, :avatar_url,
+      params.permit(:name, :lastname, :age, :gender, :city, :lng, :lat, :avatar_url, :sign,
                     user_tags_attributes: [:tag_id], hacknu_preference_attributes: [:min_age, :max_age, :distance])
     end
 
