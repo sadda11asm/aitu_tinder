@@ -8,7 +8,6 @@ class ApplicationController < ActionController::API
     return unless auth_header
 
     id = auth_header
-
     @user = HacknuUser.find_by(aitu_id: id)
   end
 

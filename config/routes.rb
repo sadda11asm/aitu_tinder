@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  post 'sign_up', to: 'hacknu_users#sign_up'
+
   resources :hacknu_conversations
   resources :tags
   resources :topic_rooms
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
   resources :hacknu_images
   resources :hacknu_users
   resources :orders
+
+
   # resources :clients
   resources :foods
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

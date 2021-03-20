@@ -1,6 +1,6 @@
 class HacknuUsersController < ApplicationController
   before_action :set_hacknu_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :update]
 
   # GET /hacknu_users
   def index
@@ -64,6 +64,20 @@ class HacknuUsersController < ApplicationController
     @hacknu_user.destroy
   end
 
+
+  def sign_up
+    my_id = request.headers['Authorization']
+    @current_user = HacknuUser.create!(aitu_id: my_id)
+    @current_user.update(user_params)
+    if @current_user.save
+      render json: @current_user, status: :created, location: @current_user
+    else
+      render json: @current_user.errors, status: :unprocessable_entity
+    end
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hacknu_user
@@ -74,6 +88,12 @@ class HacknuUsersController < ApplicationController
     def hacknu_user_params
       params.require(:hacknu_user).permit(:like_type)
     end
+
+    def user_params
+      params.require(:user).permit(:name, :lastname, :age, :gender, :city, :lng, :lat)
+    end
+
+
 
   R = 6371.0
 
