@@ -45,7 +45,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   config.action_cable.url = 'ws://localhost:3000/cable'
-  config.action_cable.disable_request_forgery_production = true
+  config.action_cable.disable_request_forgery_protection = true
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
