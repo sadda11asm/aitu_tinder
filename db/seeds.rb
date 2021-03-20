@@ -111,6 +111,13 @@ TopicRoom.create!(user_id: 6, topic_id: 3)
 TopicRoom.create!(user_id: 7, topic_id: 1)
 TopicRoom.create!(user_id: 7, topic_id: 9)
 TopicRoom.create!(user_id: 7, topic_id: 10)
+Chat.create!(first_user_id: 1, second_user_id: 2)
+Chat.create!(first_user_id: 1, second_user_id: 3)
+Message.create!(chat_id: 1, sender_id: 1, text: 'Салам Данекер!')
+Message.create!(chat_id: 1, sender_id: 2, text: 'Уалейкум Ассалам Нурс!')
+Message.create!(chat_id: 1, sender_id: 1, text: 'Салам Данекер!')
+Message.create!(chat_id: 1, sender_id: 3, text: 'Уалейкум Ассалам Даулет!')
+
 
 
 
