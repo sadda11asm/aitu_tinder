@@ -23,7 +23,7 @@ class HacknuUser < ApplicationRecord
   }
 
   scope :filter_by_likes, -> (user) {
-    where.not(id: HacknuLike.where(fan_id: user.id).select(:fan_id))
+    where.not(id: HacknuLike.where(fan_id: user.id).select(:crash_id))
   }
 
   def chats
