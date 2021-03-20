@@ -4,7 +4,6 @@ class HacknuUsersController < ApplicationController
 
   # GET /hacknu_users
   def index
-
     hacknu_users = HacknuUser.all.includes(:hacknu_preference)
     square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
 
@@ -14,21 +13,18 @@ class HacknuUsersController < ApplicationController
     hacknu_users = hacknu_users.filter_by_likes(@user)
 
     @hacknu_users = hacknu_users
-
     render json: @hacknu_users
   end
 
   def get_liked_by_users
     @liked_users = HacknuUser.joins(:hacknu_likes)
                               .where("hacknu_likes.crush_id = ? AND hacknu_likes.matched != true", @user.id)
-
     render json: @liked_users
   end
 
   def get_matched_users
     @liked_users = HacknuUser.joins(:hacknu_likes)
                              .where("hacknu_likes.crush_id = ? and hacknu_likes.matched = true", @user.id)
-
     render json: @liked_users
   end
 
@@ -50,9 +46,7 @@ class HacknuUsersController < ApplicationController
 
   # PATCH/PUT /hacknu_users/1
   def update
-
     @like = HacknuLike.find_by(crush_id: @user.id, fan_id: @hacknu_user.id)
-
     user_like_type = hacknu_user_params[:like_type]
 
     if @like.present?
@@ -69,7 +63,6 @@ class HacknuUsersController < ApplicationController
     else
       render json: @hacknu_user.errors, status: :unprocessable_entity
     end
-
   end
 
   # DELETE /hacknu_users/1
@@ -88,7 +81,16 @@ class HacknuUsersController < ApplicationController
     else
       render json: @current_user.errors, status: :unprocessable_entity
     end
+  end
 
+  def who_am_i
+    my_id = request.headers['Authorization']
+    @me = HacknuUser.find(my_id)
+    if @me.present?
+      render json: ::UserBlueprint.render(@me)
+    else
+      render json: @me.errors, status: :not_found
+    end
   end
 
 
