@@ -1,13 +1,10 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    identified_by :uuid
+    identified_by :aitu_id
 
     def connect
-      # if cookies[:token].nil?
-      self.uuid = SecureRandom.urlsafe_base64
-      # end
-
-
+      self.aitu_id = request.headers['Authorization']
+      reject_unauthorized_connection if self.aitu_id.nil?
     end
   end
 end

@@ -20,6 +20,12 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
+      receiver = if @chat.first_user == @user
+                   @chat.second_user
+                 else
+                   @chat.first_user
+                 end
+      notify_user(receiver, @message,'new_message')
       render json: @message, status: :created, location: @message
     else
       render json: @message.errors, status: :unprocessable_entity
@@ -42,6 +48,15 @@ class MessagesController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+  def notify_user(user, message, action)
+    ActionCable.server.broadcast(
+      "message_channel_#{user.aitu_id}",
+      message: {
+        action: action,
+        order_item: ::MessageBlueprint.render(message).to_json
+      }
+    )
+  end
   def set_message
     @message = Message.find(params[:id])
   end
