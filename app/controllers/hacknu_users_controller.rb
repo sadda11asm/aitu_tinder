@@ -6,7 +6,7 @@ class HacknuUsersController < ApplicationController
   def index
 
     hacknu_users = HacknuUser.all.includes(:hacknu_preference)
-    square = square(@user.lng, @user.lat, @user.hacknu_preference.distance)
+    square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
 
     # if params[:by_preferences].present?
          hacknu_users = hacknu_users.filter_by_preferences(@user, square[0],square[1],square[2],square[3])
