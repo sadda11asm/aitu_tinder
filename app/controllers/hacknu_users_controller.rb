@@ -1,6 +1,6 @@
 class HacknuUsersController < ApplicationController
   before_action :set_hacknu_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :update]
+  before_action :authenticate_user!, only: [:index, :update, :get_liked_by_users]
 
   # GET /hacknu_users
   def index
@@ -17,6 +17,13 @@ class HacknuUsersController < ApplicationController
     @hacknu_users = hacknu_users
 
     render json: @hacknu_users
+  end
+
+  def get_liked_by_users
+    @liked_users = HacknuUser.joins(:hacknu_likes)
+                              .where("hacknu_likes.crush_id = ?", @user.id)
+
+    render json: @liked_users
   end
 
   # GET /hacknu_users/1
