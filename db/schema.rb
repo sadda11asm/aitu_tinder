@@ -15,10 +15,6 @@ ActiveRecord::Schema.define(version: 2021_03_20_201438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "aitu_id_string_maps", force: :cascade do |t|
-    t.string "string_id"
-  end
-
   create_table "chats", force: :cascade do |t|
     t.bigint "first_user_id"
     t.bigint "second_user_id"
