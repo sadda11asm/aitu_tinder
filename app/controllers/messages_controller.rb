@@ -60,7 +60,10 @@ class MessagesController < ApplicationController
   end
 
   def send_push(user, message)
-    request = Net::HTTP::Post.new('https://api.miniapps.aitu.io/kz.btsd.messenger.apps.public.MiniAppsPublicService/SendPush')
+    uri = URI.parse('https://api.miniapps.aitu.io/kz.btsd.messenger.apps.public.MiniAppsPublicService/SendPush')
+    http = Net::HTTP.new(uri.hostname, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Post.new(uri)
     request.content_type = 'application/json;charset=UTF-8'
     request.body = JSON.dump(
       {
@@ -72,7 +75,7 @@ class MessagesController < ApplicationController
         'user_id' => user.aitu_id_string
       }
     )
-    request
+    http.request(request)
   end
 
   def set_message
