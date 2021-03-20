@@ -3,6 +3,10 @@ class HacknuUser < ApplicationRecord
   has_one :hacknu_preference, foreign_key: :user_id
   has_many :hacknu_likes, foreign_key: :fan_id, foreign_key: :crush_id
 
+  has_many :user_tags, foreign_key: :user_id
+  has_many :tags, through: :user_tags
+  accepts_nested_attributes_for :user_tags
+
   scope :filter_by_preferences, -> (user, minLng, maxLng, minLat, maxLat) {
 
       # square = square(user.lng, user.lat, user.hacknu_preference.distance)
