@@ -1,6 +1,10 @@
 class HacknuUsersController < ApplicationController
   before_action :set_hacknu_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :update, :destroy, :get_liked_by_users, :get_matched_users, :get_random_user]
+  before_action :authenticate_user!, only: [:index, :update, :destroy,
+                                            :get_liked_by_users,
+                                            :get_liked_users,
+                                            :get_matched_users,
+                                            :get_random_user]
 
   # GET /hacknu_users
   def index
@@ -17,8 +21,14 @@ class HacknuUsersController < ApplicationController
   end
 
   def get_liked_by_users
-    @liked_users = HacknuUser.joins(:hacknu_likes)
+    @liked_by_users = HacknuUser.joins(:hacknu_likes)
                               .where("hacknu_likes.crush_id = ? AND hacknu_likes.matched != true", @user.id)
+    render json: @liked_by_users
+  end
+
+  def get_liked_users
+    @liked_users = HacknuUser.joins(:hacknu_likes)
+                             .where("hacknu_likes.fan_id = ?", @user.id)
     render json: @liked_users
   end
 

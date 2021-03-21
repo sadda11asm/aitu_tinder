@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post 'sign_up', to: 'hacknu_users#sign_up'
-  get 'liked_users', to: 'hacknu_users#get_liked_by_users'
+  get 'liked_by_users', to: 'hacknu_users#get_liked_by_users'
+  get 'liked_users', to: 'hacknu_users#get_liked_users'
   get 'matched_users', to: 'hacknu_users#get_matched_users'
   get 'who_am_i', to: 'hacknu_users#who_am_i'
   get 'random_user', to: 'hacknu_users#get_random_user'
