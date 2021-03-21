@@ -1,4 +1,5 @@
 class TopicRoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_topic_room, only: [:show, :update, :destroy]
 
   # GET /topic_rooms
@@ -46,6 +47,8 @@ class TopicRoomsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def topic_room_params
-      params.fetch(:topic_room, {})
+      params[:free] = true
+      params[:user_id] = @user.id
+      params.permit(:user_id, :topic_id, :free)
     end
 end
