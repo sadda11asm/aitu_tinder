@@ -66,7 +66,7 @@ TopicTag.create!(topic_id: 11, tag_id: 11)
 TopicTag.create!(topic_id: 11, tag_id: 12)
 HacknuUser.create!(aitu_id: 1, name: 'Саддам', lastname: 'Асматуллаев', age: 22,
                    lat: '43.229910', lng: '76.933229', gender: 'man', city: 'Алматы') # 1
-HacknuUser.create!(aitu_id: 2, name: 'Данекер', lastname: 'Нургалиева', age: 22,
+HacknuUser.create!(aitu_id: 2, name: 'Мэр', lastname: 'Нургалиева', age: 22,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
 HacknuUser.create!(aitu_id: 3, name: 'Нурс', lastname: 'Персик', age: 22,
                    lat: '43.229920', lng: '76.933229', gender: 'man', city: 'Алматы') # 3
