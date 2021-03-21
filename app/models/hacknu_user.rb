@@ -24,7 +24,8 @@ class HacknuUser < ApplicationRecord
   }
 
   scope :filter_by_likes, -> (user) {
-    pairs = HacknuLike.where(fan_id: user.id).pluck(:crush_id) <<
+    binding.pry
+    pairs = HacknuLike.where(fan_id: user.id).pluck(:crush_id).concat
       HacknuLike.where(crush_id: user.id, matched: true).pluck(:fan_id)
     where.not(id: pairs)
   }
