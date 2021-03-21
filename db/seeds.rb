@@ -78,15 +78,15 @@ HacknuUser.create!(aitu_id: 6, name: 'Адлет', lastname: 'Котлет', age
                    lat: '43.229911', lng: '76.933329', gender: 'man', city: 'Алматы') # 6
 HacknuUser.create!(aitu_id: 7, name: 'Алмас', lastname: 'Лётчик', age: 22,
                    lat: '43.224910', lng: '76.933249', gender: 'man', city: 'Алматы') # 7
-HacknuUser.create!(aitu_id: 2, name: 'Ирина', lastname: 'Нургали', age: 21,
+HacknuUser.create!(aitu_id: 8, name: 'Ирина', lastname: 'Нургали', age: 21,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
-HacknuUser.create!(aitu_id: 2, name: 'Алия', lastname: 'Шапиева', age: 24,
+HacknuUser.create!(aitu_id: 9, name: 'Алия', lastname: 'Шапиева', age: 24,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
-HacknuUser.create!(aitu_id: 2, name: 'Алина', lastname: 'Сатиева', age: 24,
+HacknuUser.create!(aitu_id: 10, name: 'Алина', lastname: 'Сатиева', age: 24,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
-HacknuUser.create!(aitu_id: 2, name: 'Малика', lastname: 'Карова', age: 24,
+HacknuUser.create!(aitu_id: 11, name: 'Малика', lastname: 'Карова', age: 24,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
-HacknuUser.create!(aitu_id: 2, name: 'София', lastname: 'Масова', age: 19,
+HacknuUser.create!(aitu_id: 12, name: 'София', lastname: 'Масова', age: 19,
                    lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
 HacknuPreference.create!(user_id: 1, min_age: 10, max_age: 25, distance: 25000) # 1
 HacknuPreference.create!(user_id: 2, min_age: 10, max_age: 25, distance: 25000) # 1
