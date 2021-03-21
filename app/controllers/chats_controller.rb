@@ -30,6 +30,7 @@ class ChatsController < ApplicationController
     @chat = Chat.new(chat_params)
 
     if @chat.save
+      notify_user(HacknuUser.find(params[:user_id]), @chat)
       render json: @chat, status: :created, location: @chat
     else
       render json: @chat.errors, status: :unprocessable_entity
@@ -51,6 +52,16 @@ class ChatsController < ApplicationController
   end
 
   private
+
+  def notify_user(user, chat)
+    ActionCable.server.broadcast(
+      "message_channel_#{user.aitu_id}",
+      message: {
+        action: 'new_channel',
+        order_item: ::ChatBlueprint.render(chat).to_json
+      }
+    )
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_chat
     @chat = Chat.find(params[:id])
