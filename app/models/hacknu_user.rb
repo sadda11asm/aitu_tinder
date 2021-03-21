@@ -10,16 +10,17 @@ class HacknuUser < ApplicationRecord
   accepts_nested_attributes_for :user_tags
 
   scope :filter_by_preferences, -> (user, minLng, maxLng, minLat, maxLat) {
-      where("(hacknu_users.age BETWEEN ? AND ?) AND
-              (hacknu_users.gender !=  ?) AND
-              (hacknu_users.lng BETWEEN ? AND ?) AND
-              (hacknu_users.lat BETWEEN ? AND ?)",
-            user.hacknu_preference.min_age,
-            user.hacknu_preference.max_age,
-            user.gender,
-            minLng, maxLng,
-            minLat, maxLat
-            )
+      # where("(hacknu_users.age BETWEEN ? AND ?) AND
+      #         (hacknu_users.gender !=  ?) AND
+      #         (hacknu_users.lng BETWEEN ? AND ?) AND
+      #         (hacknu_users.lat BETWEEN ? AND ?)",
+      #       user.hacknu_preference.min_age,
+      #       user.hacknu_preference.max_age,
+      #       user.gender,
+      #       minLng, maxLng,
+      #       minLat, maxLat
+      #       )
+      where.not(gender: user.gender)
   }
 
   scope :filter_by_likes, -> (user) {
