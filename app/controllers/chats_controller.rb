@@ -16,6 +16,17 @@ class ChatsController < ApplicationController
 
   # POST /chats
   def create
+    puts params[:first_user_id]
+    puts params[:second_user_id]
+    # binding.pry
+    @chat = Chat.find_by(first_user_id: chat_params[:first_user_id], second_user_id: chat_params[:second_user_id])
+    if @chat.present?
+      return render json: @chat, status: :created, location: @chat
+    end
+    @chat = Chat.find_by(second_user_id: chat_params[:first_user_id], first_user_id: chat_params[:second_user_id])
+    if @chat.present?
+      return render json: @chat, status: :created, location: @chat
+    end
     @chat = Chat.new(chat_params)
 
     if @chat.save

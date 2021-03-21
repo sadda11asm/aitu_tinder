@@ -25,6 +25,7 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'blueprinter'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'pry', '~> 0.13.1'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
