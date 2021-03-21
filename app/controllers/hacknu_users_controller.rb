@@ -1,6 +1,6 @@
 class HacknuUsersController < ApplicationController
   before_action :set_hacknu_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :update, :get_liked_by_users, :get_matched_users, :get_random_user]
+  before_action :authenticate_user!, only: [:index, :update, :destroy, :get_liked_by_users, :get_matched_users, :get_random_user]
 
   # GET /hacknu_users
   def index
@@ -81,7 +81,14 @@ class HacknuUsersController < ApplicationController
 
   # DELETE /hacknu_users/1
   def destroy
-    @hacknu_user.destroy
+    @my_like = HacknuLike.find_by(fan_id: @user.id, crush_id: @hacknu_user.id)
+
+    if @my_like.present?
+      @my_like.destroy
+    else
+      render json: @order.errors, status: :not_found
+    end
+
   end
 
 
