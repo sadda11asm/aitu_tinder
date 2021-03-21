@@ -35,12 +35,16 @@ class HacknuUsersController < ApplicationController
 
   def get_random_user
     @random_user = HacknuUser.all.joins(:hacknu_preference).includes(:hacknu_preference)
-    square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
-    if @user.hacknu_preference.present?
-      @random_user = @random_user.filter_by_preferences(@user, square[0], square[1], square[2], square[3])
+    # square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
+    # if @user.hacknu_preference.present?
+    #   @random_user = @random_user.filter_by_preferences(@user, square[0], square[1], square[2], square[3])
+    # end
+    @random_user = @random_user.where.not(gender: @user.gender).order("RANDOM()").limit(1)[0]
+    if @random_user.present?
+      render json: @random_user
+    else
+      render json: @hacknu_user.errors, status: :not_found
     end
-    @random_user = @random_user.filter_by_likes(@user).order("RANDOM()").limit(1)[0]
-    render json: @random_user
   end
 
   # POST /hacknu_users
