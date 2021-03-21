@@ -111,10 +111,6 @@ HacknuPreference.create!(user_id: 9, min_age: 10, max_age: 25, distance: 25000) 
 HacknuPreference.create!(user_id: 10, min_age: 10, max_age: 25, distance: 25000) # 1
 HacknuPreference.create!(user_id: 11, min_age: 10, max_age: 25, distance: 25000) # 1
 HacknuPreference.create!(user_id: 12, min_age: 10, max_age: 25, distance: 25000) # 1
-HacknuPreference.create!(user_id: 13, min_age: 10, max_age: 25, distance: 25000) # 1
-HacknuPreference.create!(user_id: 14, min_age: 10, max_age: 25, distance: 25000) # 1
-HacknuPreference.create!(user_id: 15, min_age: 10, max_age: 25, distance: 25000) # 1
-
 
 TopicRoom.create!(user_id: 1, topic_id: 11)
 TopicRoom.create!(user_id: 1, topic_id: 10)
