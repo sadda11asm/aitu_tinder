@@ -65,29 +65,41 @@ TopicTag.create!(topic_id: 11, tag_id: 10)
 TopicTag.create!(topic_id: 11, tag_id: 11)
 TopicTag.create!(topic_id: 11, tag_id: 12)
 HacknuUser.create!(id: 1, aitu_id: 1, name: 'Саддам', lastname: 'Асматуллаев', age: 22,
-                   lat: '43.229910', lng: '76.933229', gender: 'man', city: 'Алматы') # 1
-HacknuUser.create!(id: 2, aitu_id: 2, name: 'Мэр', lastname: 'Нургалиева', age: 22,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933229', gender: 'man', city: 'Алматы',
+                   avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfS4rzl5b8pFfSw4zEH30FFtjbQo-yizIlhA&usqp=CAU") # 1
+HacknuUser.create!(id: 2, aitu_id: 2, name: 'Меруерт', lastname: 'Нургалиева', age: 22,
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "https://images.pexels.com/photos/2811087/pexels-photo-2811087.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500") # 2
 HacknuUser.create!(id: 3, aitu_id: 3, name: 'Нурс', lastname: 'Персик', age: 22,
-                   lat: '43.229920', lng: '76.933229', gender: 'man', city: 'Алматы') # 3
+                   lat: '43.229920', lng: '76.933229', gender: 'man', city: 'Алматы',
+                   avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSq2YjGwdejWupDJyX1cWQ23EQ2-pxcBryw&usqp=CAU") # 3
 HacknuUser.create!(id: 4, aitu_id: 4, name: 'Даке', lastname: 'Качок', age: 22,
-                   lat: '43.229910', lng: '76.933221', gender: 'man', city: 'Алматы') # 4
+                   lat: '43.229910', lng: '76.933221', gender: 'man', city: 'Алматы',
+                   avatar_url: "https://i.pinimg.com/originals/97/e4/2a/97e42a82fc7911961d3ca55f54d1372c.jpg") # 4
 HacknuUser.create!(id: 5, aitu_id: 5, name: 'Аблан', lastname: 'КТЛ', age: 22,
-                   lat: '43.229915', lng: '76.933229', gender: 'man', city: 'Алматы') # 5
+                   lat: '43.229915', lng: '76.933229', gender: 'man', city: 'Алматы',
+                   avatar_url: "https://i.pinimg.com/originals/e5/6b/79/e56b799b365e63c41041feb38fb7e965.jpg") # 5
 HacknuUser.create!(id: 6, aitu_id: 6, name: 'Адлет', lastname: 'Котлет', age: 22,
-                   lat: '43.229911', lng: '76.933329', gender: 'man', city: 'Алматы') # 6
+                   lat: '43.229911', lng: '76.933329', gender: 'man', city: 'Алматы',
+                   avatar_url: "") # 6
 HacknuUser.create!(id: 7, aitu_id: 7, name: 'Алмас', lastname: 'Лётчик', age: 22,
-                   lat: '43.224910', lng: '76.933249', gender: 'man', city: 'Алматы') # 7
+                   lat: '43.224910', lng: '76.933249', gender: 'man', city: 'Алматы',
+                   avatar_url: "https://assets.vogue.com/photos/5876fe0cdb0d9b0b1741e643/master/w_834,h_1200,c_limit/jon-kortajarena.jpg") # 7
 HacknuUser.create!(id: 8, aitu_id: 8, name: 'Ирина', lastname: 'Нургали', age: 21,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "https://quemodels.com/_media/buttons/quemodel_female_btn.jpg") # 2
 HacknuUser.create!(id: 9, aitu_id: 9, name: 'Алия', lastname: 'Шапиева', age: 24,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "https://t3.ftcdn.net/jpg/01/41/81/30/360_F_141813016_vrZ4TFKphl7vLBty0kfQmIAEjFgtkJzW.jpg") # 2
 HacknuUser.create!(id: 10, aitu_id: 10, name: 'Алина', lastname: 'Сатиева', age: 24,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "") # 2
 HacknuUser.create!(id: 11, aitu_id: 11, name: 'Малика', lastname: 'Карова', age: 24,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "") # 2
 HacknuUser.create!(id: 12, aitu_id: 12, name: 'София', lastname: 'Масова', age: 19,
-                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы') # 2
+                   lat: '43.229910', lng: '76.933239', gender: 'woman', city: 'Алматы',
+                   avatar_url: "https://media.wnyc.org/i/800/0/l/85/1/rsz_photo_credit_cass_bird.jpg") # 2
 HacknuPreference.create!(user_id: 1, min_age: 10, max_age: 25, distance: 25000) # 1
 HacknuPreference.create!(user_id: 2, min_age: 10, max_age: 25, distance: 25000) # 1
 HacknuPreference.create!(user_id: 3, min_age: 10, max_age: 25, distance: 25000) # 1
