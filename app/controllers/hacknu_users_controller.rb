@@ -40,7 +40,8 @@ class HacknuUsersController < ApplicationController
 
   # GET /hacknu_users/1
   def show
-    render json: @hacknu_user
+    render json: ::UserBlueprint.render(@hacknu_user)
+
   end
 
   def get_random_user
