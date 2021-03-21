@@ -1,6 +1,6 @@
 class HacknuUsersController < ApplicationController
   before_action :set_hacknu_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :update, :get_liked_by_users, :get_matched_users]
+  before_action :authenticate_user!, only: [:index, :update, :get_liked_by_users, :get_matched_users, :get_random_user]
 
   # GET /hacknu_users
   def index
@@ -31,6 +31,16 @@ class HacknuUsersController < ApplicationController
   # GET /hacknu_users/1
   def show
     render json: @hacknu_user
+  end
+
+  def get_random_user
+    @random_user = HacknuUser.all.joins(:hacknu_preference).includes(:hacknu_preference)
+    square = square(@user.lng, @user.lat, @user.hacknu_preference&.distance)
+    if @user.hacknu_preference.present?
+      @random_user = @random_user.filter_by_preferences(@user, square[0], square[1], square[2], square[3])
+    end
+    @random_user = @random_user.filter_by_likes(@user).order("RANDOM()").limit(1)[0]
+    render json: @random_user
   end
 
   # POST /hacknu_users

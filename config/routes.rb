@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'liked_users', to: 'hacknu_users#get_liked_by_users'
   get 'matched_users', to: 'hacknu_users#get_matched_users'
   get 'who_am_i', to: 'hacknu_users#who_am_i'
+  get 'random_user', to: 'hacknu_users#get_random_user'
   resources :chats
   resources :messages
   resources :hacknu_conversations
