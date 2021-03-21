@@ -10,7 +10,10 @@ class HacknuUsersController < ApplicationController
     if @user.hacknu_preference.present?
       hacknu_users = hacknu_users.filter_by_preferences(@user, square[0], square[1], square[2], square[3])
     end
-    hacknu_users = hacknu_users.filter_by_likes(@user)
+    hacknu_users = hacknu_users.select do |user|
+      !HacknuLike.where(fan_id: user.id).select(:crush_id).include?(@user.id) &&
+        !HacknuLike.where(crush_id: user.id, matched: true).select(:fan_id).include?(@user.id)
+    end
 
     @hacknu_users = hacknu_users
     render json: @hacknu_users
