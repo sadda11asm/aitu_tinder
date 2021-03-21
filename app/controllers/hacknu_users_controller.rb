@@ -21,7 +21,6 @@ class HacknuUsersController < ApplicationController
   end
 
   def get_liked_by_users
-    binding.pry
     render json: @user.fans
   end
 
